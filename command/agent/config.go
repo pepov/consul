@@ -142,6 +142,10 @@ type Config struct {
 	// and Consul RPC IP. If not specified, bind address is used.
 	AdvertiseAddr string `mapstructure:"advertise_addr"`
 
+	// AdvertiseAddr is the address we use for advertising our Serf,
+	// and Consul RPC IP. If not specified, bind address is used.
+	AdvertiseAddrWan string `mapstructure:"advertise_addr_wan"`
+
 	// Port configurations
 	Ports PortConfig
 
@@ -786,6 +790,9 @@ func MergeConfig(a, b *Config) *Config {
 	}
 	if b.AdvertiseAddr != "" {
 		result.AdvertiseAddr = b.AdvertiseAddr
+	}
+	if b.AdvertiseAddrWan != "" {
+		result.AdvertiseAddrWan = b.AdvertiseAddrWan
 	}
 	if b.Server == true {
 		result.Server = b.Server
